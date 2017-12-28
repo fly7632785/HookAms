@@ -19,7 +19,9 @@ class MainActivity : AppCompatActivity() {
 
         //测试 singletask 跳转自身无效果
         findViewById(R.id.self).setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+//            startActivity(Intent(this, MainActivity::class.java))
+//            startActivity(Intent(this, this.javaClass))
+            startActivity(Intent(this, this::class.java))
         }
         // 方案一 较为复杂
         findViewById(R.id.button).setOnClickListener {

@@ -20,10 +20,10 @@ object ReflectUtil {
                  newField: Any) {
         if (clazzObj == null || TextUtils.isEmpty(fieldString)) return
         var field: Field? = null
-        var cl: Class<*>? = clazzObj.javaClass
+        var cl: Class<in Any>? = clazzObj.javaClass
         while (field == null && cl != null) {
             try {
-                field = cl.getDeclaredField(field)
+                field = cl.getDeclaredField(fieldString)
                 if (field != null) {
                     field.isAccessible = true
                 }
@@ -43,10 +43,9 @@ object ReflectUtil {
             }
 
         } else {
-            System.err.print(field + " is not found in " + clazzObj.javaClass.name)
+            System.err.print(fieldString + " is not found in " + clazzObj.javaClass.name)
         }
     }
-
 
     /**
      * 反射的方式获取某个类的方法
