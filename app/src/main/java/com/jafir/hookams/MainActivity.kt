@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.jafir.hookams.hook.AMSHookUtil
 import com.jafir.hookams.hook.MyInstrumentation
-import com.jafir.hookams.hook.PluginUtil
+import com.jafir.hookams.hook.ReflectUtil
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("PrivateApi")
     fun hook2(context: Context) {
         try {
-            val mMainThread = PluginUtil.getField(context, "mMainThread")
-            PluginUtil.setField(mMainThread, "mInstrumentation", MyInstrumentation())
+            val mMainThread = ReflectUtil.getField(context, "mMainThread")
+            ReflectUtil.setField(mMainThread, "mInstrumentation", MyInstrumentation())
         } catch (e: Exception) {
             e.printStackTrace()
         }
